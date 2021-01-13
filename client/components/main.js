@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useSelector,  useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { getGoods, getCurrency } from '../redux/reducers/goods'
 
 import Header from './header'
@@ -23,21 +23,24 @@ const Main = () => {
     <div>
       <Header />
       <SecondHeader />
-      <div className="flex flex-wrap justify-around  md:box-content">
-        {listOfGoods.map((it) => (
-          <div key={it.id} className="box-border">
-            <Card
-              title={it.title}
-              description={it.description}
-              price={(it.price * currentRate).toFixed(2)}
-            />
-          </div>
-        ))}
+      <div className="flex flex-wrap justify-around py-6">
+        {listOfGoods.map((it) => {
+          return (
+            <div key={it.id}>
+              <Card
+                title={it.title}
+                description={it.description}
+                price={(it.price * currentRate).toFixed(2)}
+                id={it.id}
+              />
+            </div>
+          )
+        })}
       </div>
     </div>
   )
 }
-// flex-auto max-w-xs
+
 Main.propTypes = {}
 
 export default Main

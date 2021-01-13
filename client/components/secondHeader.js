@@ -7,7 +7,7 @@ import SortButtons from './sortButtons'
 const SecondHeader = () => {
   return (
     <div>
-      <div className="flex bg-gray-900 justify-between p-2 text-white box-border">
+      <div className="flex bg-gray-900 items-center justify-between p-2 text-white box-border">
         <Buttons />
         <SortButtons />
       </div>
