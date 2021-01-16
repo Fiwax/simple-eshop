@@ -65,7 +65,7 @@ server.get('/api/v1/logs', async (req, res) => {
   res.json(logs)
 })
 
-server.post('/api/v1/logs/', async (req, res) => {
+server.post('/api/v1/logs', async (req, res) => {
      readFile(`${__dirname}/logs/logs.json`).then((item) => {
      const oldLog = JSON.parse(item)
      writeFile(`${__dirname}/logs/logs.json`, JSON.stringify([...oldLog, req.body]), { encoding: 'utf-8' })
