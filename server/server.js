@@ -11,7 +11,7 @@ import cookieParser from 'cookie-parser'
 import config from './config'
 import Html from '../client/html'
 
-const { readFile } = require('fs').promises
+const { readFile, writeFile, unlink } = require('fs').promises
 
 const Root = () => ''
 
@@ -57,9 +57,30 @@ server.get('/api/v1/rates', async (req, res) => {
  res.json(data.rates)
 })
 
-server.get('/api/v1/test', (req, res) => {
-  res.send('test')
+server.get('/api/v1/logs', async (req, res) => {
+  const logs = await readFile(`${__dirname}/logs/logs.json`, { encoding: 'utf-8'})
+  .then((item) => {
+    return JSON.parse(item)
+  })
+  res.json(logs)
 })
+
+server.post('/api/v1/logs/', async (req, res) => {
+     readFile(`${__dirname}/logs/logs.json`).then((item) => {
+     const oldLog = JSON.parse(item)
+     writeFile(`${__dirname}/logs/logs.json`, JSON.stringify([...oldLog, req.body]), { encoding: 'utf-8' })
+   })
+   .catch(() => {
+      writeFile(`${__dirname}/logs/logs.json`, JSON.stringify([req.body]), { encoding: 'utf-8' })
+   })
+  res.send({ status: 'Success' })
+})
+
+server.delete('/api/v1/logs', (req, res) => {
+    unlink(`${__dirname}/logs/logs.json`)
+    res.json({ status: 'success' })
+})
+
 
 server.use('/api/', (req, res) => {
   res.status(404)

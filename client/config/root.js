@@ -10,6 +10,7 @@ import store, { history } from '../redux'
 import DummyView from '../components/dummy-view'
 import NotFound from '../components/404'
 import Main from '../components/main'
+import LogPage from '../components/logsPage'
 
 
 import Startup from './startup'
@@ -75,6 +76,7 @@ const RootComponent = (props) => {
           <Switch>
             <Route exact path="/" component={() => <Main />} />
             <Route exact path="/basket" component={() => <DummyView />} />
+            <Route exact path="/logs" component={() => <LogPage />} />
             <PrivateRoute exact path="/hidden-route" component={() => <DummyView />} />
             <Route component={() => <NotFound />} />
           </Switch>

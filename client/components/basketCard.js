@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { addQuantity, subQuantity } from '../redux/reducers/basket'
+import { addId } from '../redux/reducers/basket'
 
 //  Таблица товаров (отсортированы по текущей сортировке цена/имя)
 // картинка товара(.product__image)
@@ -23,7 +23,7 @@ const BasketCard = (props) => {
               <button
                 type="button"
                 className="font-semibold border-r bg-gray-900 hover:bg-gray-800 text-white border-gray-400 h-full w-20 flex rounded-l focus-outline-none cursor-pointer"
-                onClick={() => dispatch(addQuantity(props.id))}
+                onClick={() => dispatch(addId(props.id))}
               >
                 <span className="m-auto">+</span>
               </button>
@@ -33,7 +33,7 @@ const BasketCard = (props) => {
               <button
                 type="button"
                 className="font-semibold border-l bg-gray-900 hover:bg-gray-800 text-white border-gray-400 h-full w-20 flex rounded-r focus-outline-none cursor-pointer"
-                onClick={() => dispatch(subQuantity(props.id))}
+                onClick={() => dispatch(addId(props.id, -1))}
               >
                 <span className="m-auto">-</span>
               </button>
