@@ -59,7 +59,7 @@ export default (state = initialState, action) => {
       const message = 'sorted by name'
       axios({
         method: 'post',
-        url: 'api/v1/logs',
+        url: '/api/v1/logs',
         data: {
           log: message
         }
@@ -91,7 +91,7 @@ export function getLogs() {
 
 export function deleteLogs() {
   return (dispatch) => {
-    axios.delete('api/v1/logs').then(() => dispatch({ type: DELETE_LOGS, list: [] }))
+    axios.delete('/api/v1/logs').then(() => dispatch({ type: DELETE_LOGS, list: [] }))
   }
 }
 // change currency from ${currency1} to ${currency2}
