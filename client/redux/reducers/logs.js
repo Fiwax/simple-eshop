@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
     case ADD_ID: {
       const message = `${action.productTitle} was ${
         action.number > 0 ? `added to the basket ` : `removed from the basket`
-      } ${+new Date()}`
+      } ${new Date()}`
       axios({
         method: 'post',
         url: '/api/v1/logs',
@@ -32,7 +32,9 @@ export default (state = initialState, action) => {
       return { ...state, list: [...state.list, message] }
     }
     case SET_CURRENT_RATE: {
-      const message = `changed currency from ${action.previosSymbol} to ${action.current.symbol}`
+      const message = `changed currency from ${action.previosSymbol} to ${
+        action.current.symbol
+      } ${new Date()}`
       axios({
         method: 'post',
         url: '/api/v1/logs',
@@ -44,7 +46,7 @@ export default (state = initialState, action) => {
       return { ...state, list: [...state.list, message] }
     }
     case SORT_BY_PRICE: {
-      const message = 'sorted by price'
+      const message = `sorted by price ${new Date()}`
       axios({
         method: 'post',
         url: '/api/v1/logs',
@@ -56,7 +58,7 @@ export default (state = initialState, action) => {
       return { ...state, list: [...state.list, message] }
     }
     case SORT_BY_NAME: {
-      const message = 'sorted by name'
+      const message = `sorted by name ${new Date()}`
       axios({
         method: 'post',
         url: '/api/v1/logs',
@@ -68,7 +70,7 @@ export default (state = initialState, action) => {
       return { ...state, list: [...state.list, message] }
     }
     case ROUTER_LOCATION_CHANGE: {
-      const message = `navigate to ${action.payload.location.pathname} page`
+      const message = `navigate to ${action.payload.location.pathname} page ${new Date()}`
       axios({
         method: 'post',
         url: '/api/v1/logs',
@@ -94,9 +96,3 @@ export function deleteLogs() {
     axios.delete('/api/v1/logs').then(() => dispatch({ type: DELETE_LOGS, list: [] }))
   }
 }
-// change currency from ${currency1} to ${currency2}
-// add ${item-title} to the backet
-// remove ${item-title} from the backet
-// navigate to ${url} page
-// sort by ${title}
-// time of action in utc forma (+new Date())

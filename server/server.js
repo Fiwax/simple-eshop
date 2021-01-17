@@ -59,9 +59,7 @@ server.get('/api/v1/rates', async (req, res) => {
 
 server.get('/api/v1/logs', async (req, res) => {
   const logs = await readFile(`${__dirname}/logs/logs.json`, { encoding: 'utf-8'})
-  .then((item) => {
-    return JSON.parse(item)
-  })
+  .then((item) => JSON.parse(item))
   res.json(logs)
 })
 
