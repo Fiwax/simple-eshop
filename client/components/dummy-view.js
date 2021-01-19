@@ -7,6 +7,8 @@ import BasketCard from './basketCard'
 
 
 const Dummy = () => {
+
+  const currentRate = useSelector((s) => s.goods.currentRate)
   const symbol = useSelector((s) => s.goods.symbol)
   const listOfIds = useSelector((s) => s.basket.listOfIds)
   const listOfGoods = useSelector((s) => s.goods.listOfGoods)
@@ -16,6 +18,8 @@ const Dummy = () => {
     const productPrice = goodsInBasket.find((item) => item.id === rec.id).price * rec.quantity
     return acc + productPrice
   }, 0)
+
+
   return (
     <div>
       <Head title="Shop" />
@@ -30,7 +34,7 @@ const Dummy = () => {
                 <BasketCard
                   image={item.image}
                   title={item.title}
-                  price={item.price.toFixed(2)}
+                  price={(item.price * currentRate).toFixed(2)}
                   id={item.id}
                   amount={count?.quantity}
                 />
@@ -38,7 +42,7 @@ const Dummy = () => {
             )
           })}
           <div className="flex justify-between  ">
-          <div className="total-amount font-bold text-xl flex items-center ml-2">TOTAL PRICE : {(totalPrice).toFixed(2)} {symbol}</div>
+          <div className="total-amount font-bold text-xl flex items-center ml-2">TOTAL PRICE : {(totalPrice * currentRate).toFixed(2)} {symbol}</div>
           <button type="button" className="block w-1/4 mr-5 px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none">
             Proceed
           </button>

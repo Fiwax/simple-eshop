@@ -24,7 +24,7 @@ const LogPage = () => {
         </Link>
         <button type="button" className="p-1 hover:text-yellow-500 border-r-1 font-bold items-center focus:outline-none" onClick={() => dispatch(deleteLogs())}>Delete Logs</button>
       </nav>
-      {listOfLogs.map((it) => <div key='id'>{it.log}</div>)}
+      {listOfLogs.map((it) => <div key={it.log}>{it.log}</div>)}
     </div>
   )
 }
