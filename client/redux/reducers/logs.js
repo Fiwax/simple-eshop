@@ -78,6 +78,7 @@ export default (state = initialState, action) => {
           log: message
         }
       })
+      .catch((error) => console.log(error))
       return {...state, list: [...state.list, message]}
     }
     default:
