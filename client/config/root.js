@@ -7,13 +7,14 @@ import { Switch, Route, Redirect, StaticRouter } from 'react-router-dom'
 
 import store, { history } from '../redux'
 
-import DummyView from '../components/dummy-view'
+
 import NotFound from '../components/404'
-import Main from '../components/main'
+import MainPage from '../components/main'
 import LogPage from '../components/logsPage'
 
 
 import Startup from './startup'
+import Basket from '../components/basket'
 
 const OnlyAnonymousRoute = ({ component: Component, ...rest }) => {
   const func = (props) =>
@@ -74,10 +75,10 @@ const RootComponent = (props) => {
       <RouterSelector history={history} location={props.location} context={props.context}>
         <Startup>
           <Switch>
-            <Route exact path="/" component={() => <Main />} />
-            <Route exact path="/basket" component={() => <DummyView />} />
+            <Route exact path="/" component={() => <MainPage />} />
+            <Route exact path="/basket" component={() => <Basket />} />
             <Route exact path="/logs" component={() => <LogPage />} />
-            <PrivateRoute exact path="/hidden-route" component={() => <DummyView />} />
+            <PrivateRoute exact path="/hidden-route" component={() => <LogPage/>} />
             <Route component={() => <NotFound />} />
           </Switch>
         </Startup>
