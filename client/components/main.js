@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getGoods, getCurrency } from '../redux/reducers/goods'
 
 import Header from './header'
+import Head from './head'
 import SecondHeader from './secondHeader'
 import Card from './card'
 import Loader from './loader'
@@ -12,10 +13,6 @@ const MainPage = () => {
   const  BasketIds = useSelector((s) => s.basket.listOfIds)
   const currentRate = useSelector((s) => s.goods.currentRate)
   const dispatch = useDispatch()
-  console.log('quantity', BasketIds)
-
-  const [active, setActive] = useState(true)
-
 
   useEffect(() => {
     dispatch(getGoods())
@@ -25,17 +22,11 @@ const MainPage = () => {
     dispatch(getCurrency())
   }, [])
 
-  useEffect(() => {
-    setTimeout(() => {
-      setActive(!active)
-    }, 1200)
-  }, [])
-
-
   return (
     <div>
+      <Head title="Shop" />
       <Header />
-      {active ? (
+      {listOfGoods <= 0 ? (
         <Loader />
       ) : (
         <>
@@ -43,12 +34,11 @@ const MainPage = () => {
           <div className="flex flex-wrap justify-around py-6">
             {listOfGoods.map((it) => {
               const count = BasketIds.find((basket) => basket.id === it.id)
-              console.log('found', count)
               return (
                 <div key={it.id}>
                   <Card
                     title={it.title}
-                    description={it.description.slice(0, 33)}
+                    description={it.description.slice(0, 25)}
                     price={(it.price * currentRate).toFixed(2)}
                     id={it.id}
                     count={count?.quantity}

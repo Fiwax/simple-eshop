@@ -25,7 +25,7 @@ const Card = (props) => {
         <span
           className={`${!props.count ? 'invisible' : 'text-black font-normal'} `}
         >
-          {props.count} qty
+          {props.count}
         </span>
         <button
           type="button"

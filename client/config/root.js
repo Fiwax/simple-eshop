@@ -78,7 +78,7 @@ const RootComponent = (props) => {
             <Route exact path="/" component={() => <MainPage />} />
             <Route exact path="/basket" component={() => <Basket />} />
             <Route exact path="/logs" component={() => <LogPage />} />
-            <PrivateRoute exact path="/hidden-route" component={() => <LogPage/>} />
+            <PrivateRoute exact path="/hidden-route" component={() => <LogPage />} />
             <Route component={() => <NotFound />} />
           </Switch>
         </Startup>

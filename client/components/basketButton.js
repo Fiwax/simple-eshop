@@ -8,9 +8,9 @@ const BasketButton = () => {
   const basket = useSelector((s) => s.basket.listOfIds)
   const basketCount = basket.reduce((acc, rec) => acc + rec.quantity, 0)
   return (
-    <div id="order-count">
+    <div id="order-count" >
       <Link to="/basket" className="hover:text-yellow-500">
-        <div className="flex h-5 justify-end">
+        <div className="flex h-16 justify-end">
           <div className="relative ">
             <div className="flex flex-row cursor-pointer truncate p-2 px-4  rounded">
               <div className="flex flex-row-reverse ml-2 w-full">
