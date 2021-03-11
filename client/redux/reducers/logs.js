@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
     case ADD_ID: {
       const message = `${action.productTitle} was ${
         action.number > 0 ? `added to the basket ` : `removed from the basket`
-      } ${new Date()}`
+      } ${+new Date()}`
       axios({
         method: 'post',
         url: '/api/v1/logs',
@@ -34,7 +34,7 @@ export default (state = initialState, action) => {
     case SET_CURRENT_RATE: {
       const message = `changed currency from ${action.previosSymbol} to ${
         action.current.symbol
-      } ${new Date()}`
+      } ${+new Date()}`
       axios({
         method: 'post',
         url: '/api/v1/logs',
@@ -46,7 +46,7 @@ export default (state = initialState, action) => {
       return { ...state, list: [...state.list, message] }
     }
     case SORT_BY_PRICE: {
-      const message = `sorted by price ${new Date()}`
+      const message = `sorted by price ${+new Date()}`
       axios({
         method: 'post',
         url: '/api/v1/logs',
@@ -58,7 +58,7 @@ export default (state = initialState, action) => {
       return { ...state, list: [...state.list, message] }
     }
     case SORT_BY_NAME: {
-      const message = `sorted by name ${new Date()}`
+      const message = `sorted by name ${+new Date()}`
       axios({
         method: 'post',
         url: '/api/v1/logs',
@@ -70,7 +70,7 @@ export default (state = initialState, action) => {
       return { ...state, list: [...state.list, message] }
     }
     case ROUTER_LOCATION_CHANGE: {
-      const message = `navigate to ${action.payload.location.pathname} page ${new Date()}`
+      const message = `navigate to ${action.payload.location.pathname} page ${+new Date()}`
       axios({
         method: 'post',
         url: '/api/v1/logs',
