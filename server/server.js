@@ -46,8 +46,8 @@ middleware.forEach((it) => server.use(it))
 
 // ------API------- //
 
-server.get('/api/v1/items', (req, res) => {
-  readFile(`${__dirname}/data.json`, { encoding: 'utf8' }).then((it) => {
+server.get('/api/v1/items', async (req, res) => {
+ await readFile(`${__dirname}/data.json`, { encoding: 'utf8' }).then((it) => {
     res.json(JSON.parse(it))
   })
 })
@@ -64,7 +64,7 @@ server.get('/api/v1/logs', async (req, res) => {
 })
 
 server.post('/api/v1/logs', async (req, res) => {
-     readFile(`${__dirname}/logs/logs.json`).then((item) => {
+    await readFile(`${__dirname}/logs/logs.json`).then((item) => {
      const oldLog = JSON.parse(item)
      writeFile(`${__dirname}/logs/logs.json`, JSON.stringify([...oldLog, req.body]), { encoding: 'utf-8' })
    })
@@ -74,8 +74,8 @@ server.post('/api/v1/logs', async (req, res) => {
   res.send({ status: 'Success' })
 })
 
-server.delete('/api/v1/logs', (req, res) => {
-    unlink(`${__dirname}/logs/logs.json`)
+server.delete('/api/v1/logs', async (req, res) => {
+   await unlink(`${__dirname}/logs/logs.json`)
     res.json({ status: 'success' })
 })
 
