@@ -38,7 +38,7 @@ const MainPage = () => {
                 <div key={it.id}>
                   <Card
                     title={it.title}
-                    description={it.description.slice(0, 25)}
+                    description={it.description}
                     price={(it.price * currentRate).toFixed(2)}
                     id={it.id}
                     count={count?.quantity}

@@ -16,7 +16,7 @@ const Card = (props) => {
       />
       <div className="px-6 py-4 ">
         <div className="font-bold text-lg mb-2 ">{props.title}</div>
-        <p>{props.description}...</p>
+        <p className="truncate">{props.description}</p>
       </div>
       <div className="flex justify-between">
         <span className="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker">
