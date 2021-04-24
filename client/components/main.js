@@ -12,6 +12,7 @@ const MainPage = () => {
   const listOfGoods = useSelector((s) => s.goods.listOfGoods)
   const  BasketIds = useSelector((s) => s.basket.listOfIds)
   const currentRate = useSelector((s) => s.goods.currentRate)
+  const { isLoading } = useSelector((s) => s.goods)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -26,7 +27,7 @@ const MainPage = () => {
     <div>
       <Head title="Shop" />
       <Header />
-      {listOfGoods <= 0 ? (
+      { isLoading ? (
         <Loader />
       ) : (
         <>

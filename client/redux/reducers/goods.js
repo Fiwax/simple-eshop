@@ -12,13 +12,14 @@ const initialState = {
   listOfGoods: [],
   rates: {},
   currentRate: 1,
-  symbol:'USD'
+  symbol:'USD',
+  isLoading: true
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_GOODS: {
-      return { ...state, listOfGoods: action.listOfGoods }
+      return { ...state, listOfGoods: action.listOfGoods, isLoading: action.loader }
     }
     case GET_CURRENCY: {
       return { ...state, rates: action.rates }
@@ -38,9 +39,11 @@ export default (state = initialState, action) => {
 }
 
 export function getGoods() {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const store = getState()
+    const { isLoading } = store.goods
     axios('/api/v1/items').then(({ data }) => {
-      dispatch({ type: GET_GOODS, listOfGoods: data })
+      dispatch({ type: GET_GOODS, listOfGoods: data, loader: !isLoading })
     })
   }
 }
