@@ -39,11 +39,9 @@ export default (state = initialState, action) => {
 }
 
 export function getGoods() {
-  return (dispatch, getState) => {
-    const store = getState()
-    const { isLoading } = store.goods
+  return (dispatch) => {
     axios('/api/v1/items').then(({ data }) => {
-      dispatch({ type: GET_GOODS, listOfGoods: data, loader: !isLoading })
+      dispatch({ type: GET_GOODS, listOfGoods: data, loader: false })
     })
   }
 }
